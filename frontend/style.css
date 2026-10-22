@@ -1,0 +1,367 @@
+:root {
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  color: #243d42;
+  background: #f2f7f5;
+  font-synthesis: none;
+}
+
+body {
+  margin: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  height: 52px;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: #146b65;
+  background: #ffffff;
+  border-bottom: 1px solid #e5efeb;
+}
+.header strong {
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: 1px;
+  background: #dff3e8;
+  padding: 2px 10px;
+  border-radius: 8px;
+}
+.header span {
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #294b43;
+  line-height: 1.4;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #deebe5;
+  flex-wrap: wrap;
+}
+.toolbar > .ant-input {
+  max-width: 520px;
+  min-width: 180px;
+  flex: 1;
+  font-size: 13px;
+}
+.toolbar .ant-upload-wrapper:first-of-type {
+  margin-left: 12px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 184px minmax(0, 1fr);
+  min-height: calc(100vh - 105px);
+}
+aside {
+  background: #eaf4ef;
+  border-right: 0;
+  padding: 20px 10px;
+}
+h1,
+h2 {
+  margin: 0;
+  font-weight: 600;
+}
+h1 {
+  font-size: 22px;
+  letter-spacing: -0.4px;
+  overflow-wrap: anywhere;
+}
+h2 {
+  font-size: 14px;
+}
+aside h2 {
+  color: #527068;
+  padding: 0 10px 15px;
+}
+.history-row {
+  position: relative;
+  display: flex;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  border: 0;
+}
+.history-row.active {
+  background: #cfece1;
+}
+.history-row.active::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 5px;
+  bottom: 5px;
+  width: 3px;
+  background: #178577;
+}
+.history-row .ant-btn:first-child {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 10px;
+}
+.history-row .ant-btn:last-child {
+  color: #55796f;
+  padding-inline: 6px;
+  opacity: 0.7;
+}
+.history-row:hover .ant-btn:last-child,
+.history-row:focus-within .ant-btn:last-child {
+  opacity: 1;
+}
+main {
+  padding: 26px 28px;
+  min-width: 0;
+}
+.project-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.project-heading span {
+  color: #7c623b;
+  background: #fff0d7;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 0;
+  border-bottom: 1px solid #e7f1ec;
+  border-radius: 12px 12px 0 0;
+}
+.controls label {
+  font-size: 14px;
+  color: #486b61;
+}
+.controls .ant-select {
+  width: 190px;
+}
+.plots {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 1px;
+  background: #e7f1ec;
+  border: 0;
+}
+.plot-panel {
+  background: white;
+  min-width: 0;
+}
+.panel-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #edf3ef;
+  flex-wrap: wrap;
+}
+.panel-toolbar h2 {
+  font-size: 15px;
+}
+.panel-toolbar .ant-btn {
+  font-size: 13px;
+  height: 28px;
+  padding-inline: 9px;
+  color: #237a6c;
+  box-shadow: none;
+  background: transparent;
+}
+.panel-toolbar .ant-btn:disabled {
+  color: #a4b8af;
+}
+.canvas-wrap {
+  position: relative;
+  padding: 12px 8px 4px;
+}
+canvas {
+  width: 100%;
+  height: clamp(340px, 53vh, 620px);
+  display: block;
+  touch-action: none;
+}
+.empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.timeline {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: 0;
+  border-top: 0;
+  border-radius: 0 0 12px 12px;
+}
+.timeline .ant-btn {
+  min-width: 72px;
+}
+.timeline .ant-slider {
+  flex: 1;
+  min-width: 40px;
+}
+.timeline > span {
+  min-width: 104px;
+  text-align: right;
+  font:
+    14px Consolas,
+    monospace;
+  font-variant-numeric: tabular-nums;
+  color: #247b6b;
+}
+
+/* Buttons use filled or text treatments; outlines remain for keyboard focus. */
+body .ant-btn {
+  border: 0;
+  box-shadow: none;
+  font-weight: 500;
+  transition:
+    background-color 160ms,
+    color 160ms;
+}
+body .ant-btn-default {
+  background: #e5f3ed;
+  color: #216c5e;
+}
+body .ant-btn-default:not(:disabled):hover {
+  background: #d1ebdf;
+  color: #145b4e;
+}
+body .ant-btn-primary {
+  background: #16836f;
+  color: #fff;
+}
+body .ant-btn-primary:not(:disabled):hover {
+  background: #106956;
+}
+body .ant-btn-text:not(:disabled):hover {
+  background: #d9eee4;
+}
+body .ant-btn:disabled {
+  color: #a0b4aa;
+  background: #f1f5f2;
+}
+body .ant-btn:focus-visible {
+  outline: 2px solid #4ca58f;
+  outline-offset: 3px;
+}
+.panel-toolbar .ant-btn-default {
+  background: transparent;
+}
+.panel-toolbar .ant-btn-default:not(:disabled):hover {
+  background: #e6f4ec;
+}
+.panel-toolbar .ant-btn:disabled {
+  background: transparent;
+}
+.toolbar > .ant-input {
+  background: #f0f6f2;
+  border-color: transparent;
+}
+.toolbar > .ant-input:hover,
+.toolbar > .ant-input:focus {
+  background: #fff;
+  border-color: #80b9a3;
+}
+.timeline .ant-btn {
+  background: #16836f;
+  color: #fff;
+}
+.timeline .ant-btn:disabled {
+  background: #e5f3ed;
+  color: #a0b4aa;
+}
+
+@media (max-width: 1050px) {
+  .layout {
+    grid-template-columns: 160px minmax(0, 1fr);
+  }
+  main {
+    padding: 18px;
+  }
+  .plots {
+    grid-template-columns: 1fr;
+  }
+  .plot-panel + .plot-panel {
+    border-top: 1px solid #deebe5;
+  }
+  canvas {
+    height: 330px;
+  }
+  .history-row .ant-btn:last-child {
+    opacity: 1;
+  }
+}
+@media (max-width: 640px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  aside {
+    border-right: 0;
+    border-bottom: 1px solid #deebe5;
+    padding: 12px;
+  }
+  aside h2 {
+    padding-bottom: 8px;
+  }
+  .history-row {
+    display: inline-flex;
+    max-width: 100%;
+    margin-right: 4px;
+    margin-bottom: 0;
+  }
+  main {
+    padding: 16px 10px;
+  }
+  .toolbar {
+    padding: 10px 12px;
+  }
+  .toolbar .ant-upload-wrapper:first-of-type {
+    margin-left: 0;
+  }
+  .controls {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  .controls .ant-select {
+    flex: 1;
+    min-width: 110px;
+  }
+  .project-heading {
+    margin-bottom: 14px;
+  }
+  .timeline {
+    gap: 12px;
+    padding: 12px;
+  }
+  .timeline > span {
+    min-width: 80px;
+  }
+}

@@ -1,28 +1,46 @@
-# BSPV 最小 Demo
+# BSPV
 
-一个零第三方依赖的 Basilisk 后处理演示程序：读取无表头 11 列日志、读取 `droplet_intermediate/droplet_facets_t*.dat` 轮廓，并通过时间轴联动曲线与轮廓。
+Basilisk 仿真结果后处理演示程序，支持日志曲线、液滴轮廓和时间联动。后端使用 Python 标准库，前端使用 React 和 Ant Design。
 
-## 运行
+## 启动
+
+`static/dist/` 为本地构建产物，不提交 Git。首次拉取项目后先运行 `npm ci` 和 `npm run build`；完成构建后，日常运行只需：
 
 ```powershell
 python app.py
 ```
 
-浏览器打开 <http://127.0.0.1:8000>。首次启动会自动生成 `demo_data/`，因此可立刻查看示例效果。
+打开 http://127.0.0.1:8000，点击“示例”加载仓库自带的 `demo_data/`。
 
-也可以在页面顶部选择一个日志文件，点击“上传并打开”。上传文件会保存到本项目的 `uploads/` 目录，并自动进入分析页面。然后在“上传轮廓”中一次选择多个 `.dat` 文件，点击“导入轮廓”，文件会放入当前项目的 `droplet_intermediate/`。
+## 前端开发
 
-## 打开实际数据
+安装 Node.js 后，在项目根目录执行：
 
-在页面顶部的“结果目录”输入实际算例根目录，例如 `E:\\simulation\\case01`，再点击“打开项目”。目录结构应类似：
+```powershell
+npm ci
+npm run format
+npm run build
+```
+
+构建成功后刷新页面。无需另启前端服务，也不依赖浏览器访问外部 CDN。
+
+- `frontend/main.jsx`：React 页面、Ant Design 组件与数据交互。
+- `frontend/plots.js`：Canvas 绘图。
+- `frontend/style.css`：布局样式。
+- `frontend/index.html`：页面入口模板。
+- `frontend/build.mjs`：构建脚本，成功后更新 `static/index.html`。
+- `static/dist/`：自动生成的压缩资源，不直接编辑。
+
+## 打开数据
+
+输入本机算例根目录，点击“打开”；或点击“上传日志”选取日志，再使用“导入轮廓”选择多个 `.dat` 文件。上传日志保存在项目 `uploads/` 目录。
 
 ```text
 case01/
 ├─ log
-├─ droplet_intermediate/droplet_facets_t0.00.dat
-└─ snapshot/snapshot-0.dump
+└─ droplet_intermediate/
+   ├─ droplet_facets_t0.00.dat
+   └─ droplet_facets_t0.05.dat
 ```
 
-轮廓 `.dat` 中每行是一个 `x y` 坐标点，程序每两行合并为一条线段并绘制；也兼容每行直接写入 `x1 y1 x2 y2` 的旧格式。
-
-目前 `snapshot/*.dump` 仅建立索引，不直接解析。dump 转换及云图显示属于下一阶段功能。
+日志第一列作为时间。轮廓文件每两行 `x y` 坐标组成一条线段，也兼容每行 `x1 y1 x2 y2` 格式。当前不解析 `snapshot/*.dump`，也未实现快照索引或云图。
